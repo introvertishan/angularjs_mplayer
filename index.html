@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US" ng-app="myApp">
+<head>
+	<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' /> 
+</head>
+<body>
+<div ng-view></div>
+<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+	<script>
+  // Initialize Firebase
+  	var config = {
+		apiKey: "AIzaSyDWZWfcIrj2zBxF2LlSFtNFs5qG-lLsGkk",
+		authDomain: "mplayer-23f46.firebaseapp.com",
+		databaseURL: "https://mplayer-23f46.firebaseio.com",
+		projectId: "mplayer-23f46",
+		storageBucket: "",
+		messagingSenderId: "732505183568"
+  	};
+  	firebase.initializeApp(config);
+</script>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/player.css">
+	<link rel="stylesheet" type="text/css" href="fonts/glyphicons-halflings-regular.woff2">
+	<script src="js/angular-route.min.js"></script>
+	<script src="js/angular-touch.min.js"></script>
+	<script src="js/angular-sanitize.min.js"></script>
+	<script src="js/angular-ui-router.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/angular-dropdowns.min.js"></script>
+	<script src="js/services.js"></script>
+	<script src="pages/login/login.js"></script>
+	<script src="pages/playlist/playlist.js"></script>
+</body>
+</html>
