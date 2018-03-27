@@ -12,7 +12,7 @@ angular.module('myApp.playlist', ['ngRoute'])
 	});
 }])
 
-.controller('playlistCtrl', [ '$scope', 'mplayerAPIservice','$routeParams', '$location','$rootScope','$window', function($scope, mplayerAPIservice, $routeParams, $location,$rootScope,$window) {
+.controller('playlistCtrl', [ '$scope', 'mplayerAPIservice','$routeParams', '$location','$rootScope','$window','$compile', function($scope, mplayerAPIservice, $routeParams, $location,$rootScope,$window,$compile) {
 
 	$scope.activeList = 0;
 	$scope.activeListName = "";
@@ -38,7 +38,10 @@ angular.module('myApp.playlist', ['ngRoute'])
 
 	mplayerAPIservice.getAllSongs().then(function(response){
 	  if(response.status == 200 && "OK" == response.statusText){
-			$scope.all_songs = response.data;
+			$scope.paginate = response.data;
+			$scope.all_songs = response.data.results;
+			let temp = Math.ceil((response.data.count)/10)
+			createbtns(temp);
 		}
 		else {
 			console.log(response);
@@ -149,6 +152,38 @@ angular.module('myApp.playlist', ['ngRoute'])
 				$scope.activeListName = "";
 				$scope.list_result= "";
 				document.getElementById('list_loader').style.display = "none";
+			}
+			else {
+				console.log(response);
+			}
+		}, function(response){
+				console.log("error "+JSON.stringify(response));
+			});
+	}
+
+	function createbtns(x) {
+
+		for(var i=0;i<x;i++) {
+    		(function (i) {
+    			var node = document.createElement("button");
+    			node.className += "abc";
+    			var textnode = document.createTextNode(i+1);
+        		$(node).click(function(){
+            		$scope.getMore(i+1)
+        		});
+        		node.appendChild(textnode);
+        		document.getElementById("page_list").appendChild(node);
+    		}(i));
+		}
+		}	
+
+	
+
+	$scope.getMore = function(x){
+
+		mplayerAPIservice.getMoreSongs(x).then(function(response){
+	  		if(response.status == 200 && "OK" == response.statusText){
+				$scope.all_songs = response.data.results;
 			}
 			else {
 				console.log(response);

@@ -45,6 +45,21 @@ angular.module('myApp.services', [])
 		});
    	}
 
+   	ergastAPI.getMoreSongs = function(z) {
+
+		return $http({
+			method: 'GET',
+			headers: {
+    			'Authorization': "Token "+$rootScope.getToken()
+			}, 
+			data: {
+            	csrfmiddlewaretoken : csrftoken,
+        	},
+			timeout: 30000,
+			url: rootUrl+"getAllSongs?page="+z
+		});
+   	}
+
    	ergastAPI.getAllPlaylist = function() {
 		return $http({
 			method: 'GET',
